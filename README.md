@@ -1,14 +1,8 @@
-Example how to turn on caching
-==================================
+Example Depot application from [Agile Web Development with Rails 4][1]
+======================================================================
 
-Test1
------
-To test caching, in the store view (index.html.erb) make changes inside the caching directives.
-Refreshing the store index should not display the changes.
-Got to the products page and edit a product.
-Returning to the store index page, the page should now display the changes.
- 
-Test2
------
-In the store view, make changes outside of the caching directives.
-These changes should be displayed immediately when the store index page is refreshed.
+Thoughts as I go through the example application.
+
+For caching example see the turn-on-caching branch.
+
+[1]: http://pragprog.com/book/rails4/agile-web-development-with-rails-4
