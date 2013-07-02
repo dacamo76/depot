@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class ProductsControllerTest < ActionController::TestCase
+  include ActionView::Helpers::SanitizeHelper
   setup do
     @product = products(:one)
     @update = {
@@ -14,7 +15,19 @@ class ProductsControllerTest < ActionController::TestCase
   test "should get index" do
     get :index
     assert_response :success
+    assert_select '#columns #side a', minimum: 4
+    assert_select '#main .list_description', 3
+    assert_select 'dt', 'Programming Ruby 1.9'
+    assert_select "form", false, "This page must contain no forms"
     assert_not_nil assigns(:products)
+  end
+
+  test "product description should be 80 characters or less" do
+    get :index
+    descriptions = css_select("dd")
+    descriptions.map { |x| strip_tags(x.to_s) }.each do |desc|
+      assert desc.length <= 80, "Product description '#{desc}' has #{desc.length} characters, should be 80 or less"
+    end
   end
 
   test "should get new" do
