@@ -10,4 +10,16 @@ class StoreControllerTest < ActionController::TestCase
     assert_select '.price', /\$[,\d]+\.\d\d/
   end
 
+  test "test index counter" do
+    assert session[:count].nil?
+    get :index
+    refute session[:count].nil?
+    assert session[:count] == 1
+    get :index
+    assert session[:count] == 2    
+    assert_difference('session[:count]', 2) do
+      get :index
+      get :index
+    end
+  end
 end

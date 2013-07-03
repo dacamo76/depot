@@ -24,6 +24,12 @@ class LineItemsControllerTest < ActionController::TestCase
     assert_redirected_to cart_path(assigns(:line_item).cart)
   end
 
+  test "should reset store index page count when adeing line_item to cart" do
+    assert session[:count].nil?
+    post :create, product_id: products(:ruby).id
+    assert session[:count] == 0
+  end
+
   test "should show line_item" do
     get :show, id: @line_item
     assert_response :success

@@ -10,6 +10,10 @@ I finally ended up including ActionView::Helpers::SanitizeHelper and using the s
 This seems overkill for just removing simple HTML tags.
 Is it possible to de something like `css_select("dd").map { &:text )` and I'm just not seeing it?
 
+**Store controller functional tests
+In the functional test I ended up using the session variable directly, this makes the test too brittle for my liking.
+I'd like to get a hold of the `@count` variable directly. Need to look deeper into how to do this, might not even be possible.
+
 For caching example see the [turn-on-caching branch][2].
 
 [1]: http://pragprog.com/book/rails4/agile-web-development-with-rails-4
