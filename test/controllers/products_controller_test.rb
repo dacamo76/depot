@@ -18,7 +18,7 @@ class ProductsControllerTest < ActionController::TestCase
     assert_select '#columns #side a', minimum: 4
     assert_select '#main .list_description', 3
     assert_select 'dt', 'Programming Ruby 1.9'
-    assert_select "form", false, "This page must contain no forms"
+    assert_select "form", 1, "Page should contain only 1 form (logout button)"
     assert_not_nil assigns(:products)
   end
 
